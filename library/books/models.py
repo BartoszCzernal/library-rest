@@ -31,7 +31,7 @@ class Book(models.Model):
     date_of_release = models.DateField(null=True, blank=True)
     authors = models.ManyToManyField(Author, blank=True)
     categories = models.ManyToManyField(Category, blank=True)
-    on_loan_to = models.ForeignKey(Client, on_delete=models.SET_DEFAULT, default=None)
+    on_loan_to = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, blank=True)
 
     # owned_by : ForeignKey Library
 
