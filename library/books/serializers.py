@@ -17,11 +17,15 @@ class CategorySerializer(ModelSerializer):
 
 class BookSerializer(ModelSerializer):
     authors = AuthorSerializer(many=True, read_only=False)
-    categories = CategorySerializer(many=True, read_only=True)
+    categories = CategorySerializer(many=True, read_only=False)
 
     def create(self, validated_data):
+        categories_data = validated_data.pop('categories')
         authors_data = validated_data.pop('authors')
         book = Book.objects.create(**validated_data)
+        for category_data in categories_data:
+            category, created = Category.objects.get_or_create(**category_data)
+            book.categories.add(category)
         for author_data in authors_data:
             author, created = Author.objects.get_or_create(**author_data)
             # get_or_create is case sensitive
