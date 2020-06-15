@@ -35,7 +35,7 @@ class Rental(models.Model):
     client = models.ForeignKey(Client, on_delete=models.PROTECT)
     book = models.ForeignKey('books.Book', on_delete=models.PROTECT)
     date_rental = models.DateField(auto_now_add=True)
-    date_expected_return = models.DateField(default=datetime.now().date() + timedelta(days=30))
+    date_expected_return = models.DateField(default=datetime.now().date() + timedelta(days=30), editable=False)
     date_return = models.DateField(null=True)
 
     def __repr__(self):
