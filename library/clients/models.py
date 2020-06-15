@@ -19,7 +19,7 @@ class Address(models.Model):
 class Client(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=40)
-    address = models.ForeignKey(Address, on_delete=models.SET_DEFAULT, default=None)
+    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
     email = models.EmailField()
     phone = PhoneNumberField(null=False, blank=False, unique=True)
     date_of_birth = models.DateField()
