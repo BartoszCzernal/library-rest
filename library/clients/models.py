@@ -1,6 +1,6 @@
 from django.db import models
-from phonenumber_field.modelfields import PhoneNumberField
 from datetime import datetime, timedelta
+from common.common import PersonContact
 
 
 class Address(models.Model):
@@ -16,13 +16,7 @@ class Address(models.Model):
         return "{}, {}, {}".format(self.city, self.street, self.house_number)
 
 
-class Client(models.Model):
-    first_name = models.CharField(max_length=30, blank=True)
-    last_name = models.CharField(max_length=40)
-    address = models.ForeignKey(Address, on_delete=models.SET_NULL, null=True)
-    email = models.EmailField()
-    phone = PhoneNumberField(null=False, blank=False, unique=True)
-    date_of_birth = models.DateField()
+class Client(PersonContact):
 
     def __repr__(self):
         return "Client(first_name='{}', last_name='{}')".format(self.first_name, self.last_name)
