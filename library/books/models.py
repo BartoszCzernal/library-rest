@@ -1,8 +1,6 @@
 from django.db import models
 from isbn_field import ISBNField
 
-from clients.models import Client
-
 
 class Author(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
@@ -31,7 +29,7 @@ class Book(models.Model):
     date_of_release = models.DateField(null=True, blank=True)
     authors = models.ManyToManyField(Author, blank=True)
     categories = models.ManyToManyField(Category, blank=True)
-    on_loan_to = models.ForeignKey(Client, on_delete=models.SET_NULL, null=True, blank=True)
+    on_loan_to = models.ForeignKey('clients.Client', on_delete=models.SET_NULL, null=True, blank=True)
 
     # owned_by : ForeignKey Library
 

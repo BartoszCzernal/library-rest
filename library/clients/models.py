@@ -1,5 +1,6 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
+from datetime import datetime, timedelta
 
 
 class Address(models.Model):
@@ -28,5 +29,18 @@ class Client(models.Model):
 
     def __str__(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+
+class Rental(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.PROTECT)
+    book = models.ForeignKey('books.Book', on_delete=models.PROTECT)
+    date_rental = models.DateField(auto_now_add=True)
+    date_expected_return = models.DateField(default=datetime.now().date() + timedelta(days=30))
+    date_return = models.DateField(null=True)
+
+    def __repr__(self):
+        return "Rental(client='{}', book='{}')".format(self.client.first_name + ' ' + self.client.last_name,
+                                                       self.book.title)
+
 
 
