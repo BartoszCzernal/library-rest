@@ -42,5 +42,9 @@ class Rental(models.Model):
         return "Rental(client='{}', book='{}')".format(self.client.first_name + ' ' + self.client.last_name,
                                                        self.book.title)
 
+    def __str__(self):
+        return "{} - {}".format(self.client.first_name + ' ' + self.client.last_name,
+                                self.book.title)
+
 
 
