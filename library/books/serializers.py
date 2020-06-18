@@ -18,6 +18,7 @@ class CategorySerializer(ModelSerializer):
 class BookSerializer(ModelSerializer):
     authors = AuthorSerializer(many=True, read_only=False)
     categories = CategorySerializer(many=True, read_only=False)
+    #update to support nested update
 
     def create(self, validated_data):
         categories_data = validated_data.pop('categories')

@@ -22,7 +22,7 @@ urlpatterns = [
     path('', views.BookList.as_view()),
     path('<int:pk>/', views.BookDetail.as_view()),
     path('authors/', views.AuthorList.as_view()),
-    path('author/<int:pk>/', views.AuthorDetail.as_view()),
+    path('authors/<int:pk>/', views.AuthorDetail.as_view()),
     path('categories/', views.CategoryList.as_view()),
-    path('category/<int:pk>/', views.CategoryDetail.as_view()),
+    path('categories/<int:pk>/', views.CategoryDetail.as_view()),
 ]
