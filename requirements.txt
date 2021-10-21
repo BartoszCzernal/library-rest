@@ -1,5 +1,5 @@
 asgiref==3.2.7
-Babel==2.8.0
+Babel==2.9.1
 Django==3.0.6
 django-cors-headers==3.3.0
 django-isbn-field==0.5.2
